@@ -8,7 +8,7 @@ from .models import Problem
 
 def index(request):
     template = loader.get_template("problems/index.html")
-    context = {"problem": choice(list(Problem.objects.all()))}
+    context = {"problem": choice(Problem.objects.all())}
     return HttpResponse(template.render(context, request))
 
 def correct(request):
