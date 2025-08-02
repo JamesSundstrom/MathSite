@@ -2,6 +2,12 @@
 
 from django.db import migrations, models
 
+def create_single_digit_addition_problems(apps, schema_editor):
+    Problem = apps.get_model('problems', 'Problem')
+    for i in range(10):
+        for j in range(10):
+            problem = Problem(question=f'{i} + {j}', answer = i + j, type="Single-digit addition")
+            problem.save()
 
 class Migration(migrations.Migration):
 
@@ -15,8 +21,10 @@ class Migration(migrations.Migration):
             name='Problem',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('problem', models.CharField(max_length=200)),
+                ('question', models.CharField(max_length=200)),
                 ('answer', models.IntegerField()),
+                ('type', models.CharField(max_length=50)),
             ],
         ),
+        migrations.RunPython(create_single_digit_addition_problems),
     ]
