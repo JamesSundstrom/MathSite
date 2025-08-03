@@ -8,7 +8,7 @@ class Problem(models.Model):
     def __str__(self):
         return self.question
     
-    def type(self):
+    def problem_type(self):
         return self.type
     
     def check_answer(self, answer):
