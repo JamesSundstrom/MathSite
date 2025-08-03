@@ -9,6 +9,27 @@ def create_single_digit_addition_problems(apps, schema_editor):
             problem = Problem(question=f'{i} + {j}', answer = i + j, type="Single-digit addition")
             problem.save()
 
+def create_single_digit_subtraction_problems(apps, schema_editor):
+    Problem = apps.get_model('problems', 'Problem')
+    for i in range(10):
+        for j in range(10):
+            problem = Problem(question=f'{i+j} - {i}', answer = j, type="Single-digit subtraction")
+            problem.save()
+
+def create_single_digit_multiplication_problems(apps, schema_editor):
+    Problem = apps.get_model('problems', 'Problem')
+    for i in range(10):
+        for j in range(10):
+            problem = Problem(question=f'{i} * {j}', answer = i * j, type="Single-digit multiplication")
+            problem.save()
+
+def create_single_digit_division_problems(apps, schema_editor):
+    Problem = apps.get_model('problems', 'Problem')
+    for i in range(10):
+        for j in range(10):
+            problem = Problem(question=f'{i*j} / {i}', answer = j, type="Single-digit division")
+            problem.save()
+
 class Migration(migrations.Migration):
 
     initial = True
@@ -27,4 +48,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.RunPython(create_single_digit_addition_problems),
+        migrations.RunPython(create_single_digit_subtraction_problems),
+        migrations.RunPython(create_single_digit_multiplication_problems),
+        migrations.RunPython(create_single_digit_division_problems),
     ]
