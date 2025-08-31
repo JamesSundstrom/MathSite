@@ -25,7 +25,7 @@ def create_single_digit_multiplication_problems(apps, schema_editor):
 
 def create_single_digit_division_problems(apps, schema_editor):
     Problem = apps.get_model('problems', 'Problem')
-    for i in range(10):
+    for i in range(1, 10):
         for j in range(10):
             problem = Problem(question=f'{i*j} / {i}', answer = j, type="Single-digit division")
             problem.save()
